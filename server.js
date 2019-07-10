@@ -64,7 +64,9 @@ app.get('/leaderboard', function(req, res) {
     }
 });
 
-var server=app.listen(3000,() => {
+let port = process.env.PORT || 1234;
+
+var server=app.listen(port,() => {
     console.log('Server listening on port',server.address().port)
 })
 
