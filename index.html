@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MaxJump</title>
+
+	<link rel="stylesheet" href="style.css">
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+	</style>
+
+</head>
+
+<body background="back.jpg" style="font-family: 'comic sans ms', fantasy;">
+	<div class="header">
+		<div class="column home" align="left" style="margin-top: 0.4em; font-weight:bold; font-size: 150%;"><button class="button4" onClick="home()">Home</button></div>
+		<div class="column name" align="center" style="margin-top: 0em; font-weight:bold; font-size: 200%;">MaxJump: A Strategy Game</div>
+		<div class="column salutation" align="right" id="stn" style="color:grey; margin-top: 0.7em; font-weight:bold; font-size: 120%;"></div>
+		<div class="column login" align="right" style="margin-top: 0.4em; font-weight:bold; font-size: 150%;"><button id="lgn" class="button button3" onClick="openForm()">Login</button>
+			<button id="lgt" class="button button3" onClick="logout()">Logout</button></div>
+	</div>
+
+	<div class="row">
+		<div class="column left" style="margin-top: -0.6em; font-size: 100%; font-weight:bold">
+			<h2>Game Rules...</h2>
+			<ul>
+				<li>Opponents:
+					<ol>
+						<li>Human - 'O'</li>
+						<li>AI - 'X'</li>
+					</ol>
+				</li>
+				<li>Moves:
+					<ol>
+						<li>Click source cell, then target cell.</li>
+						<li>Target cell must be empty.</li>
+						<li>Jump straight over opponent to capture.</li>
+						<li>While capturing, jump size=2; else jump size=1.</li>
+						<li>For upper and lower triangular analogies, possible moves are along green lines: </li>
+					</ol>
+				</li>
+				<div style="margin-top: -2em;" align='center'>
+					<img src="1.jpg">
+				</div>
+				<li>Result:
+					If all troops get captured, opponent will win. Tie Game (3 min).
+				</li>
+			</ul>
+		</div>
+		<div class="column middle">
+			<table class="table1">
+				<tr>
+					<td class="cell" id="0"></td>
+					<td></td>
+					<td class="cell" id="1"></td>
+					<td></td>
+					<td class="cell" id="2"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cell" id="3"></td>
+					<td class="cell" id="4"></td>
+					<td class="cell" id="5"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td class="cell" id="6"></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="cell" id="7"></td>
+					<td class="cell" id="8"></td>
+					<td class="cell" id="9"></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td class="cell" id="10"></td>
+					<td></td>
+					<td class="cell" id="11"></td>
+					<td></td>
+					<td class="cell" id="12"></td>
+				</tr>
+			</table>
+			<div class="endgame">
+				<div class="text"></div>
+			</div>
+			<div id="curPlayer" align="center" style="margin-top:1em; font-weight:bold"></div>
+			<div style="margin-top: 1em;" align='center'><button class="button button1" onClick="newGame()">New Game</button></div>
+		</div>
+		<div class="column right" style="margin-top: 0em; font-size: 100%; font-weight:bold">
+			<div class="LevelTimer">
+				<div class="column level" align="left">
+					<div class="dropdown" style="font-size: 170%;">
+						<button class="dropbtn" id=Level>Level</button>
+						<div class="dropdown-content">
+							<button class="button" onClick="setLevel1()">Level 1</button>
+							<button class="button" onClick="setLevel2()">Level 2</button>
+							<button class="button" onClick="setLevel3()">Level 3</button>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="column level" align="left"><button class="button button2" id=Level onClick="setLevel()"></button></div> -->
+				<div class="column timer" id=Timer align="right" style="font-size: 170%; color: red"></div>
+			</div>
+			<!-- <div id=Timer align="right" style="margin-top: 0.7em; font-size: 170%; color: white">Timer:</div>
+			<div id=Level align="left" style="margin-top: 0.7em; font-size: 170%; color: black">Level:</div> -->
+
+			<h2 style="margin-top: 3em" align="center">Leaderboard</h2>
+			<div style="margin-top: 1em">
+				<table class="table2" align="center">
+					<tr>
+						<th>I-Number</th>
+						<th>Username</th> 
+						<th>Score</th>
+					</tr>
+					<tr>
+						<td id="50"></td>
+						<td id="51"></td>
+						<td id="52"></td>
+					</tr>
+					<tr>
+						<td id="53"></td>
+						<td id="54"></td>
+						<td id="55"></td>
+					</tr>
+					<tr>
+						<td id="56"></td>
+						<td id="57"></td>
+						<td id="58"></td>
+					</tr>
+					<tr>
+						<td id="59"></td>
+						<td id="60"></td>
+						<td id="61"></td>
+					</tr>
+					<tr>
+						<td id="62"></td>
+						<td id="63"></td>
+						<td id="64"></td>
+					</tr>
+				</table>
+			</div>
+			<div id="yourRank" style="margin-top: 1em; font-size: 150%" align="center"></div>
+		</div>
+	</div>
+
+	<div class="form-popup" id="myForm">
+		<form action="" class="form-container">
+			<h1>Login</h1>
+		
+			<label for="ino"><b>I-Number</b></label>
+			<input type="text" placeholder="Enter I-No." name="ino" required>
+		
+			<label for="uname"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="uname" required>
+		
+			<button type="button" class="btn" onclick="closeForm(this.form)">Login</button>
+			<button type="button" class="btn cancel" onclick="cancel()">Cancel</button>
+		</form>
+	  </div>
+
+	<script src="script.js"></script>
+</body>
+
+</html>
