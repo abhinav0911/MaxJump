@@ -1,3 +1,8 @@
+.WebContainer{
+    width: 100%;
+    height: auto;
+}
+
 table.table1 {
 	margin: 0 auto;
 	margin-top: 1em;
