@@ -810,6 +810,7 @@ function makeMove(board, player, source, target){
 }
 
 function leaderBoard(){
+// 	let port = process.env.PORT || 1234;
 	var score=score1.toString();
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -823,7 +824,7 @@ function leaderBoard(){
 		}
 	};
 	
-	xhttp.open("GET", "http://localhost:3000/leaderboard?ino="+ino+"&uname="+uname+"&score="+score, true);
+	xhttp.open("GET", "https://maxjump.herokuapp.com/leaderboard?ino="+ino+"&uname="+uname+"&score="+score, true);
 	xhttp.send();
 }
 
