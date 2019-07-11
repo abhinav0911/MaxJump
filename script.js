@@ -60,13 +60,13 @@ function setLevel1(){
 }
 
 function setLevel2(){
-	level=4;
+	level=3;
 	document.getElementById("Level").innerText = ('Level: 2');
 	newGame();
 }
 
 function setLevel3(){
-	level=3;
+	level=4;
 	document.getElementById("Level").innerText = ('Level: 3');
 	newGame();
 }
