@@ -40,6 +40,7 @@ function cancel(){
 }
 
 function closeForm(form){
+	score1=0;
 	ino = form.ino.value;
 	uname= form.uname.value;
 	// console.log("I-No.: " + ino + ", Username: "+uname);
