@@ -8,5 +8,5 @@ A strategy web game
 >To check if node.js correctly installed: > node -v  
 >To install all dependencies from package.json file: > npm install  
 >Run the server: > node server.js  
-  + Open browser and goto:   localhost:3000  
+  + Open browser and goto:   https://maxjump.herokuapp.com/ 
   + Enjoy the game.  
